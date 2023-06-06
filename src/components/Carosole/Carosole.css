@@ -1,0 +1,232 @@
+/*------------------ Fonts ------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+
+/*------------------ Variables ------------------*/
+
+:root {
+    --main-background: rgb(10, 41, 71);
+    --main-text-color: #e7f8f8;
+    --dark-cyan: rgb(0, 133, 133);
+}
+
+
+/*------------------ Global Stuff ------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--main-text-color);
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: capitalize;
+    color: var(--main-text-color);
+}
+
+body {
+    height: fit-content;
+    min-height: 100vh;
+    background: no-repeat linear-gradient(50deg, var(--main-background) 0%, rgb(158, 22, 255) 40%, rgb(65, 65, 250) 50%, var(--main-background) 75%);
+}
+
+
+
+/*------------------ Custom Scrollbar ------------------*/
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--main-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--dark-cyan);
+}
+
+.home,
+.home-popular,
+.home-header,
+.home-popular h3 {
+    width: fit-content;
+}
+
+
+h1 {
+    background-color: inherit;
+}
+
+.home {
+    display: flex;
+    flex-direction: row;
+}
+
+.home-popular {
+    padding: 25vh 8vw 15vh 3vw;
+    width: 63%;
+}
+
+.home-popular h3 {
+    text-transform: capitalize;
+    margin: auto;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+.home-header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.home-header h1 {
+    font-size: 5.5rem;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 1000px;
+    position: relative;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+li {
+    width: fit-content;
+    height: fit-content;
+}
+
+li img {
+    border-radius: 5% / 3%;
+    border: 1px solid var(--main-background);
+    position: relative;
+}
+
+.slider-prev,
+.slider-next {
+    height: fit-content;
+    background-color: inherit;
+    font-size: 30px;
+    margin: auto;
+    cursor: pointer;
+    font-weight: 600;
+    position: absolute;
+    top: 160px;
+}
+
+.slider-prev {
+    left: 40px;
+}
+
+.slider-next {
+    left: 670px;
+}
+
+.slider-prev::before {
+    content: '<';
+    margin-right: 15px;
+}
+
+.slider-next::before {
+    content: '>';
+    margin-left: 15px;
+}
+
+.description {
+    position: relative;
+    top: 350px;
+    left: -120px; /* Adjust the left value to position it as desired */
+}
+
+
+.description h3 {
+    display: none;
+
+}
+
+.further-description {
+    position: relative;
+    top: 350px;
+    left: 100px;
+}
+
+.further-description h2 {
+    text-transform: capitalize;
+    display: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    width: 55%;
+    text-align: center;
+    text-transform: none;
+    
+}
+
+h2.active {
+    display: block;
+}
+
+h3.active {
+    display: block !important;
+}
+
+.item {
+    flex: 1 0 20%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s ease-in-out;
+}
+
+.small1,
+.small2 {
+    height: 200px;
+    position: absolute;
+    z-index: -1;
+    top: 70px;
+}
+
+.big1,
+.big2 {
+    height: 250px;
+    position: absolute;
+    z-index: 0;
+    top: 40px;
+}
+
+.small1 {
+    left: 90px;
+}
+
+.big1 {
+    left: 170px;
+}
+
+.focus {
+    position: absolute;
+    z-index: 1;
+    height: 300px;
+    left: 270px;
+    top: 10px;
+}
+
+.big2 {
+    left: 400px;
+}
+
+.small2 {
+    left: 520px;
+}

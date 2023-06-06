@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div className="navbar bg-gradient-to-r from-teal-200 to-teal-400">
+        <div className="navbar bg-gradient-to-r from-red-200 to-purple-400">
             <div className="flex-1">
                 <Link className=""><img className='h-16 w-30' src={logo} alt="" /></Link>
             </div>
