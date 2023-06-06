@@ -11,7 +11,6 @@ const Error = () => {
                     <div id="container-stars">
                         <div id="stars"></div>
                     </div>
-
                     <div id="glow">
                         <div className="circle"></div>
                         <div className="circle"></div>

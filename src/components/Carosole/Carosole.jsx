@@ -36,7 +36,7 @@ const Carosole = () => {
         <div className="home">
             <div className="home-popular">
                 <div className="slider">
-                    <div className="slider-prev" onClick={togglePrevious}></div>
+                    <div className="slider-prev text-white" onClick={togglePrevious}></div>
 
                     <ul>
                         {courseImages.map((image, index) => (
@@ -51,12 +51,12 @@ const Carosole = () => {
                     </ul>
 
 
-                    <div className="slider-next" onClick={toggleNext}></div>
+                    <div className="slider-next text-white" onClick={toggleNext}></div>
                 </div>
 
                 <div className="description">
                     {courseTitles.map((title, index) => (
-                        <h3 className='' key={index} data-index={index} style={{ display: index === activeCourse ? 'block' : 'none' }}>
+                        <h3 className='text-white' key={index} data-index={index} style={{ display: index === activeCourse ? 'block' : 'none' }}>
                             {title}
                         </h3>
                     ))}
@@ -64,14 +64,14 @@ const Carosole = () => {
 
                 <div className="further-description">
                     {courseDescriptions.map((description, index) => (
-                        <h2 key={index} data-index={index} style={{ display: index === activeCourse ? 'block' : 'none' }}>
+                        <h2 className='text-white' key={index} data-index={index} style={{ display: index === activeCourse ? 'block' : 'none' }}>
                             {description}
                         </h2>
                     ))}
                 </div>
             </div>
 
-            <div className="home-header">
+            <div className="home-header text-white">
                 <h1>Bring music to life!</h1>
                 <h1>Start to play today</h1>
             </div>
