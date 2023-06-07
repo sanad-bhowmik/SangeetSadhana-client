@@ -23,6 +23,11 @@ const Main = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    const handleThemeToggle = () => {
+        setIsDarkMode((prevMode) => !prevMode);
+    };
+
+
     return (
         <div className={`bg-white ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
             {isLoading ? (
@@ -60,17 +65,12 @@ const Main = () => {
                     </svg></div>
             ) : (
                 <>
-                    <div>
-                        <button
-                            className='theme-toggle'
-                            onClick={() => setIsDarkMode((prevMode) => !prevMode)}
-                        >
-                            {isDarkMode ? (
-                                <FaRegMoon style={{ width: '20px', height: '20px' }} />
-                            ) : (
-                                <FaRegSun style={{ width: '20px', height: '20px' }} />
-                            )}
-                        </button>
+                    <div className="theme-toggle" onClick={handleThemeToggle}>
+                        {isDarkMode ? (
+                            <FaRegMoon className="theme-icon dark" />
+                        ) : (
+                            <FaRegSun className="theme-icon light" />
+                        )}
                     </div>
 
                     <div>

@@ -184,10 +184,18 @@
 	left: 94%;
 	transform: translateY(-50%);
 	z-index: 9999;
+	cursor: pointer;
   }
   
-  /* Add styles for the main content */
-  .main-content {
-	margin-left: 70px; /* Adjust this value according to your requirements */
+ 
+.theme-toggle .theme-icon {
+	font-size: 24px;
   }
   
+  .theme-toggle .light {
+	color: #f1c530;
+  }
+  
+  .theme-toggle .dark {
+	color: #347ab2;
+  }
