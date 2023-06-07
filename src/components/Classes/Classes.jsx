@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './Classes.css'
+import './Classes.css';
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/styles.css';
 
 const Classes = () => {
   const [classesData, setClassesData] = useState([]);
@@ -9,7 +11,8 @@ const Classes = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/classes');
-        setClassesData(response.data);
+        const sortedData = response.data.sort((a, b) => b.enrolled_students - a.enrolled_students);
+        setClassesData(sortedData);
       } catch (error) {
         console.error('Error fetching classes data:', error);
       }
@@ -33,10 +36,11 @@ const Classes = () => {
                 <div className="badge badge-secondary">{classItem.rating}</div>
               </h2>
               <p>{classItem.class_details}</p>
-              <div className="card-actions justify-end">
+              <div className="card-actions justify-end mb-4">
                 <div className="badge badge-outline">{classItem.cost}</div>
                 <div className="badge badge-outline">{classItem.duration}</div>
               </div>
+              <AwesomeButton type="secondary">Students: {classItem.enrolled_students}</AwesomeButton>
             </div>
           </div>
         ))}
