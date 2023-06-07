@@ -5,6 +5,7 @@ import Header from '../../Shared/Header/Header';
 import './Instructor.css';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
+import Footer from '../../Shared/Footer/Footer';
 
 
 const Instructor = () => {
@@ -26,7 +27,7 @@ const Instructor = () => {
     return (
         <div>
             <Header />
-            <div className="panels ">
+            <div className="panels mt-4">
                 <div className="panels__container">
                     <a href="#" className="panel">
                         <div className="panel__content" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXVzaWN8ZW58MHx8MHx8fDA%3D&w=1000&q=80)' }}>
@@ -101,13 +102,14 @@ const Instructor = () => {
                                     ))}
                                 </div>
                             )}
-                            <Link to={`/instructors/${teacher._id}`} className="card-actions mt-6 ml-[30%]">
+                            <Link to={`/instructors/${teacher._id}?img=${encodeURIComponent(teacher.img)}&name=${encodeURIComponent(teacher.name)}&instructor=${encodeURIComponent(teacher.instructor)}&seats=${encodeURIComponent(teacher.seats)}&price=${encodeURIComponent(teacher.price)}`} className="card-actions mt-6 ml-[30%]">
                                 <AwesomeButton type="primary">See Classes</AwesomeButton>
                             </Link>
                         </div>
                     </div>
                 ))}
             </div>
+            <Footer />
         </div>
     );
 };
