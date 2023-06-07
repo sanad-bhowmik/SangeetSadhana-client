@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Carosole.css';
 
 const Carosole = () => {
     const [activeCourse, setActiveCourse] = useState(0);
-
+    const [headerIndex, setHeaderIndex] = useState(0);
+    const headerTexts = [
+      'Music is the universal language',
+      'Music can evoke emotions',
+      'Music brings people together',
+      'Music has healing powers',
+      'Music inspires creativity',
+      'Music transcends boundaries'
+    ];
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setHeaderIndex((prevIndex) => (prevIndex + 1) % headerTexts.length);
+      }, 3000);
+  
+      return () => {
+        clearInterval(interval);
+      };
+    }, []);
+  
     const togglePrevious = () => {
         setActiveCourse((prevCourse) => (prevCourse - 1 >= 0 ? prevCourse - 1 : 3));
     };
@@ -71,9 +90,8 @@ const Carosole = () => {
                 </div>
             </div>
 
-            <div className="home-header text-white">
-                <h1>Bring music to life!</h1>
-                <h1>Start to play today</h1>
+            <div className="home-header text-teal-500">
+                <h1>{headerTexts[headerIndex]}</h1>
             </div>
         </div>
     );
