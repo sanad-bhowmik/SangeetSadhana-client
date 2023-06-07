@@ -4,6 +4,7 @@ import Carosole from '../components/Carosole/Carosole';
 import './Main.css'
 import Footer from '../Shared/Footer/Footer';
 import Classes from '../components/Classes/Classes';
+import Teachers from '../components/Teachers/Teachers';
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +58,7 @@ const Main = () => {
                     <Header />
                     <Carosole />
                     <Classes />
+                    <Teachers />
                     <Footer />
                 </>
             )}
