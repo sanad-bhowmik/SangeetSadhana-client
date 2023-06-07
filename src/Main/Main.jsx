@@ -8,9 +8,11 @@ import Teachers from '../components/Teachers/Teachers';
 import Banner from '../components/Banner/Banner';
 import Quote from '../components/Quote/Quote';
 import Review from '../Review/Review';
+import { FaRegSun, FaRegMoon } from 'react-icons/fa';
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
         // Simulating loading delay
@@ -22,7 +24,7 @@ const Main = () => {
     }, []);
 
     return (
-        <div className=' bg-white'>
+        <div className={`bg-white ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
             {isLoading ? (
                 <div className='spinner_body bg-white '>
                     <svg class="pencil" viewBox="0 0 200 200" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">
@@ -58,14 +60,29 @@ const Main = () => {
                     </svg></div>
             ) : (
                 <>
-                    <Header />
-                    <Carosole />
-                    <Quote/>
-                    <Classes />
-                    <Banner/>
-                    <Teachers />
-                    <Review/>
-                    <Footer />
+                    <div>
+                        <button
+                            className='theme-toggle'
+                            onClick={() => setIsDarkMode((prevMode) => !prevMode)}
+                        >
+                            {isDarkMode ? (
+                                <FaRegMoon style={{ width: '20px', height: '20px' }} />
+                            ) : (
+                                <FaRegSun style={{ width: '20px', height: '20px' }} />
+                            )}
+                        </button>
+                    </div>
+
+                    <div>
+                        <Header />
+                        <Carosole />
+                        <Quote />
+                        <Classes />
+                        <Banner />
+                        <Teachers />
+                        <Review />
+                        <Footer />
+                    </div>
                 </>
             )}
         </div>

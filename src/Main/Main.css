@@ -166,3 +166,28 @@
 		transform: translate(100px,100px) rotate(112deg);
 	}
 }
+/* Dark theme */
+.dark-theme {
+	background-color: #333;
+	color: #fff;
+  }
+  
+  /* Light theme */
+  .light-theme {
+	background-color: #fff;
+	color: #333;
+  }
+  /* Add styles for the theme toggle button */
+.theme-toggle {
+	position: fixed;
+	top: 50%;
+	left: 94%;
+	transform: translateY(-50%);
+	z-index: 9999;
+  }
+  
+  /* Add styles for the main content */
+  .main-content {
+	margin-left: 70px; /* Adjust this value according to your requirements */
+  }
+  
