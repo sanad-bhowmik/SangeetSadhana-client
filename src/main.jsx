@@ -7,11 +7,16 @@ import {
 } from "react-router-dom";
 import Main from './Main/Main.jsx';
 import Error from './pages/Error/Error';
+import Instructor from './pages/Instructor/Instructor';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+  },
+  {
+    path: "/instructor",
+    element: <Instructor/>
   },
   {
     path: '*',

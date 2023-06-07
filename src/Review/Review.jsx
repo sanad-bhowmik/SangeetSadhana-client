@@ -369,9 +369,8 @@ const Review = () => {
                 <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 z-10 absolute mx-[-12px] my-[-10px]">
                     <img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="" />
                 </div>
-                <div className="pl-5 pt-8">
-                    <p className="text-base font-medium text-stone-500">We are providing the best and suitable home <br />
-                        insurance services for the people who are <br /> interested in treatment</p>
+                <div className="pl-5 pt-4">
+                    <p className="text-base font-medium text-stone-500">In a world filled with noise and chaos, music emerges as a guiding light, transporting us to realms beyond our imagination. Its harmonious melodies and captivating rhythms resonate deep within.</p>
                     <h3 className="text-lg pt-[20px] font-bold">Ilham Yuda</h3>
                     <h3 className="font-medium text-lg">Businessman</h3>
                 </div>
@@ -381,9 +380,8 @@ const Review = () => {
                 <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full ring-2 ring-white-300 z-10 absolute mx-[-12px] my-[-10px]">
                     <img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="" />
                 </div>
-                <div className="pl-5 pt-8">
-                    <p className="text-base font-medium text-stone-500">We are providing the best and suitable home <br />
-                        insurance services for the people who are <br /> interested in treatment</p>
+                <div className="pl-5 pt-4">
+                    <p className="text-base font-medium text-stone-500">In a world filled with noise and chaos, music emerges as a guiding light, transporting us to realms beyond our imagination. Its harmonious melodies and captivating rhythms resonate deep within.</p>
                     <h3 className="text-lg pt-[20px] font-bold">Ilham Yuda</h3>
                     <h3 className="font-medium text-lg">Businessman</h3>
                 </div>

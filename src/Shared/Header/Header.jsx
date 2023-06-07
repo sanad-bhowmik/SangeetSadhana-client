@@ -10,10 +10,10 @@ const Header = () => {
             </div>
             <div className="flex gap-6 font-serif">
                 <div className="form-control ">
-                    <h1>Home</h1>
+                    <Link to='/'><h1>Home</h1></Link>
                 </div>
                 <div className="form-control ">
-                    <h1>Instructors</h1>
+                    <Link to='/instructor'><h1>Instructors</h1></Link>
                 </div>
                 <div className="form-control ">
                     <h1>Classes</h1>
