@@ -90,7 +90,7 @@ const Carosole = () => {
                 </div>
             </div>
 
-            <div className="home-header text-teal-500">
+            <div className="home-header text-gray-100">
                 <h1>{headerTexts[headerIndex]}</h1>
             </div>
         </div>

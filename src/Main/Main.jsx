@@ -6,6 +6,8 @@ import Footer from '../Shared/Footer/Footer';
 import Classes from '../components/Classes/Classes';
 import Teachers from '../components/Teachers/Teachers';
 import Banner from '../components/Banner/Banner';
+import Quote from '../components/Quote/Quote';
+import Review from '../Review/Review';
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -58,9 +60,11 @@ const Main = () => {
                 <>
                     <Header />
                     <Carosole />
+                    <Quote/>
                     <Classes />
                     <Banner/>
                     <Teachers />
+                    <Review/>
                     <Footer />
                 </>
             )}
