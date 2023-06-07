@@ -6,6 +6,7 @@ import './Instructor.css';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import Footer from '../../Shared/Footer/Footer';
+import { Fade } from "react-awesome-reveal";
 
 
 const Instructor = () => {
@@ -77,7 +78,9 @@ const Instructor = () => {
                     </a>
                 </div>
             </div>
-            <h1 className=' text-5xl mt-16 mb-14 text-center'>Our <span className='text-teal-600'>Instructor's</span></h1>
+            <Fade delay={1e3} cascade damping={1e-1}>
+                <h1 className=' text-5xl mt-16 mb-14 text-center'>Our <span className='text-teal-600'>Instructor's</span></h1>
+            </Fade>
             <div className="instructors ml-52 grid grid-cols-2 gap-4">
                 {teachers.map((teacher) => (
                     <div key={teacher._id} className="card w-96 bg-base-100 shadow-xl">
@@ -102,7 +105,7 @@ const Instructor = () => {
                                     ))}
                                 </div>
                             )}
-                            <Link to={`/instructors/${teacher._id}?img=${encodeURIComponent(teacher.img)}&name=${encodeURIComponent(teacher.name)}&instructor=${encodeURIComponent(teacher.instructor)}&seats=${encodeURIComponent(teacher.seats)}&price=${encodeURIComponent(teacher.price)}`} className="card-actions mt-6 ml-[30%]">
+                            <Link to={`/instructors/${teacher._id}`} className="card-actions mt-6 ml-[30%]">
                                 <AwesomeButton type="primary">See Classes</AwesomeButton>
                             </Link>
                         </div>
@@ -115,3 +118,6 @@ const Instructor = () => {
 };
 
 export default Instructor;
+{/* <Link to={`/instructors/${teacher._id}?img=${encodeURIComponent(teacher.img)}&name=${encodeURIComponent(teacher.name)}&instructor=${encodeURIComponent(teacher.instructor)}&seats=${encodeURIComponent(teacher.seats)}&price=${encodeURIComponent(teacher.price)}`} className="card-actions mt-6 ml-[30%]">
+    <AwesomeButton type="primary">See Classes</AwesomeButton>
+</Link> */}
