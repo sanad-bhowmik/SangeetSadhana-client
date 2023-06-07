@@ -23,7 +23,7 @@ const Classes = () => {
 
   return (
     <div className="mt-14">
-      <h1 className="text-5xl text-center mb-10 font-semibold underline">Popular Classes</h1>
+      <h1 className="text-5xl text-center mb-10 font-semibold underline">Popular <span className='text-purple-400'>Classes</span></h1>
       <div className="grid grid-cols-3 gap-4 ml-36">
         {classesData.map((classItem) => (
           <div className="card w-96 bg-base-100 shadow-xl" key={classItem._id}>
