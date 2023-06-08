@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className='mt-[20%]'>
+    <footer className='mt-[100%]'>
       <div className="waves">
         <div className="wave" id="wave1"></div>
         <div className="wave" id="wave2"></div>
