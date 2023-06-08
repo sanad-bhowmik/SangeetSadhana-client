@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import './Login.css'
 import Header from '../../Shared/Header/Header';
-import one from '../../assets/login/leaf_01.png'
-import two from '../../assets/login/leaf_02.png'
-import three from '../../assets/login/leaf_03.png'
-import four from '../../assets/login/leaf_04.png'
-import girl from '../../assets/login/girl.png'
-import tree from '../../assets/login/trees.png'
-import bg from '../../assets/login/bg.jpg'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
-const Login = () => {
+import google from '../../assets/image/google.png'
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { toast, Toaster } from 'react-hot-toast';
+import app from '../../firebase/firebase.config';
+import Footer from '../../Shared/Footer/Footer';
 
+const Login = () => {
+    const auth = getAuth(app)
     const { signIn } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
 
     const handleLogin = event => {
         event.preventDefault();
@@ -24,10 +24,26 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                toast.success('Login successful! Welcome Back');
             })
     }
+    const handleGoogleSignIn = (event) => {
+        event.preventDefault();
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                toast.success('Login successful! Welcome');
+                setUser(loggedUser);
+            })
+            .catch((error) => {
+                toast.error('error', error.message);
+            });
+    };
     return (
         <div>
+            <Toaster />
             <Header />
             <section className='bg-black'>
                 <span></span>
@@ -159,6 +175,9 @@ const Login = () => {
                                 <Link href="#">Forgot password</Link>
                                 <Link to="/registration">SignUp</Link>
                             </div>
+                            <div>
+                                <button onClick={handleGoogleSignIn} ><img className='h-16 ml-32' src={google} alt="" /></button>
+                            </div>
                             <div className="inputbx">
                                 <input type="submit" value="Login" />
                             </div>
@@ -166,6 +185,7 @@ const Login = () => {
                     </div>
                 </div>
             </section>
+            <Footer />
         </div>
     );
 };

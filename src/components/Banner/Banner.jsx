@@ -5,9 +5,8 @@ const Banner = () => {
     return (
         <>
             {/* <h1 className=''>Best <span c>Choice</span></h1> */}
-            <button className="btn ml-[38%] text-6xl mt-24 font-bold"> 
-            Best Service's
-            </button>
+            <h1 className=" mt-24 text-5xl text-center mb-10 font-semibold">Best <span className='text-red-300'>Choice</span></h1>
+
             <div className="container mt-10 mx-auto">
                 <div id="marketing" className="section">
                     <div className="content">
