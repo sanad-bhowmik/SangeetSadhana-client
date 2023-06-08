@@ -23,6 +23,11 @@ const Header = () => {
                 <div className="form-control ">
                     <h1>Dashboard</h1>
                 </div>
+                <div className="form-control ">
+                    <Link to='/login'>
+                        <h1>Login</h1>
+                    </Link>
+                </div>
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">

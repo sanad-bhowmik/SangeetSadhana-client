@@ -6,6 +6,8 @@ import Main from './Main/Main.jsx';
 import Error from './pages/Error/Error';
 import Instructor from './pages/Instructor/Instructor';
 import Allclass from './pages/Allclass/Allclass';
+import Login from './pages/Login/Login';
+import Registration from './pages/Registration/Registration';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: '/instructors/:id',
     element: <Allclass />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/registration',
+    element: <Registration />
   },
   {
     path: '*',
