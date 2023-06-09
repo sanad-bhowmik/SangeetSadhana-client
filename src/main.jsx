@@ -14,7 +14,12 @@ import DashUsers from './pages/DashBoard/DashUsers/DashUsers';
 import DashClass from './pages/DashBoard/DashClass/DashClass';
 import StudentClass from './pages/DashBoard/StudentClass/StudentClass';
 import Payment from './pages/DashBoard/Payment/Payment';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: '/',
@@ -66,6 +71,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider><RouterProvider router={router} /></AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
