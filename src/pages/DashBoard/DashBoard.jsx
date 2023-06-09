@@ -18,7 +18,7 @@ const DashBoard = () => {
         <div className="flex h-screen">
             {/* Side Navbar */}
             <div className="navbar text-black w-1/3 p-4">
-                <div className="text-2xl font-bold mb-8"><img src={logo} className='h-24 mb-[300%]' alt="" /></div>
+                <div className="text-2xl font-bold mb-8"><img src={logo} className='h-24 mb-[190%]' alt="" /></div>
                 <nav>
                     <ul className="flex flex-col">
 
