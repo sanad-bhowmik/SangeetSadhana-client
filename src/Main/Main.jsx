@@ -9,11 +9,12 @@ import Banner from '../components/Banner/Banner';
 import Quote from '../components/Quote/Quote';
 import Review from '../Review/Review';
 import { FaRegSun, FaRegMoon } from 'react-icons/fa';
+import useTitle from '../hooks/useTitle';
 
 const Main = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(false);
-
+    useTitle('Home')
     useEffect(() => {
         // Simulating loading delay
         const timer = setTimeout(() => {

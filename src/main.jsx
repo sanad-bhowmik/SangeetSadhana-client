@@ -18,6 +18,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import Enroll from './pages/DashBoard/Enroll/Enroll';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/payment',
         element: <Payment />
+      }
+      ,
+      {
+        path: '/dashboard/enroll',
+        element: <Enroll/>
       }
     ]
   },

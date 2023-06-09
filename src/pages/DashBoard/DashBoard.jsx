@@ -7,13 +7,16 @@ import DashUsers from './DashUsers/DashUsers';
 import DashClass from './DashClass/DashClass';
 import StudentClass from './StudentClass/StudentClass';
 import Payment from './Payment/Payment';
+import useAdmin from '../../hooks/useAdmin';
+import useInstructor from '../../hooks/useInstructor';
+import Enroll from './Enroll/Enroll';
 
 const DashBoard = () => {
     const [activeNavItem, setActiveNavItem] = useState('Courses');
 
-    const isAdmin = true;
-    // const isInstructor = true;
-    // const isInstructor = true;
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
+
 
     const handleNavItemClick = (navItem) => {
         setActiveNavItem(navItem);
@@ -25,10 +28,6 @@ const DashBoard = () => {
                 <div className="text-2xl font-bold mb-8"><img src={logo} className='h-24 mb-[190%]' alt="" /></div>
                 <nav>
                     <ul className="flex flex-col">
-                        {/* 
-                        <li className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''}`}>
-                            <Link to='/'><FaHome className='ml-6' />Home</Link>
-                        </li> */}
                         {
                             isAdmin ? <>
                                 <li
@@ -46,29 +45,29 @@ const DashBoard = () => {
                                     <FaSchool className='ml-6' />Classes
                                 </li>
                             </> : <>
-                                <li className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''}`}>
-                                    <Link to='/'><FaHome className='ml-6' />Home</Link>
-                                </li>
-                            </>
-                        }
-                        {/* {
-                            isInstructor ? <>
                                 <li
                                     className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                         }`}
                                     onClick={() => handleNavItemClick('MyClass')}
                                 >
-                                    <FaMarker className='ml-6' /><NavLink to='/dashboard/users' >Add Class</NavLink>
+                                    <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/myclass' >My Class</NavLink>
+                                </li>
+                                <li
+                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                        }`}
+                                    onClick={() => handleNavItemClick('Enroll')}
+                                >
+                                    <FaSchool className='ml-6' /><NavLink to='/dashboard/enroll' >Enroll</NavLink>
                                 </li>
                                 <li
                                     className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                         }`}
                                     onClick={() => handleNavItemClick('Payment')}
                                 >
-                                    <FaMoneyCheckAlt className='ml-6' />My Class
+                                    <FaSchool className='ml-6' /><NavLink to='/dashboard/payment' >Payment</NavLink>
                                 </li>
-                            </> : <></>
-                        } */}
+                            </>
+                        }
                     </ul>
                 </nav>
             </div>
@@ -79,15 +78,15 @@ const DashBoard = () => {
                         <DashUsers />
                     </div>
                 )}
-                {activeNavItem === 'Classes' && (
+                {activeNavItem === 'Enroll' && (
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">Classes</h2>
-                        <DashClass />
+                        <h2 className="text-2xl font-bold mb-4">Enroll</h2>
+                        <Enroll/>
                     </div>
                 )}
                 {activeNavItem === 'MyClass' && (
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">Assignments</h2>
+                        <h2 className="text-2xl font-bold mb-4"></h2>
                         <StudentClass />
                     </div>
                 )}

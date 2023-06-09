@@ -7,11 +7,12 @@ import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import Footer from '../../Shared/Footer/Footer';
 import { Fade } from "react-awesome-reveal";
+import useTitle from '../../hooks/useTitle';
 
 
 const Instructor = () => {
     const [teachers, setTeachers] = useState([]);
-
+    useTitle('Instructor')
     useEffect(() => {
         const fetchTeachers = async () => {
             try {
@@ -118,6 +119,3 @@ const Instructor = () => {
 };
 
 export default Instructor;
-{/* <Link to={`/instructors/${teacher._id}?img=${encodeURIComponent(teacher.img)}&name=${encodeURIComponent(teacher.name)}&instructor=${encodeURIComponent(teacher.instructor)}&seats=${encodeURIComponent(teacher.seats)}&price=${encodeURIComponent(teacher.price)}`} className="card-actions mt-6 ml-[30%]">
-    <AwesomeButton type="primary">See Classes</AwesomeButton>
-</Link> */}

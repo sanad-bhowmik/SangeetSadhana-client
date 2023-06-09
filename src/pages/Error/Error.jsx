@@ -4,24 +4,19 @@ import './Error.css'
 
 const Error = () => {
     return (
-        <div>
-            <Link to="/">
-                <button className="btn mt-20 ml-[40%]" type="button">
-                    <strong>Go to Homepage!</strong>
-                    <div id="container-stars">
-                        <div id="stars"></div>
-                    </div>
-                    <div id="glow">
-                        <div className="circle"></div>
-                        <div className="circle"></div>
-                    </div>
-                </button>
+        <div className="relative">
+            <img
+                className="ml-[0%] w-[100%]"
+                src="https://i.pinimg.com/originals/70/ce/41/70ce41310f8a9c2a84e97b57198015d9.gif"
+                alt=""
+            />
+            <Link
+                to="/"
+                className="btn glass absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-teal-200 text-white py-2 px-4 rounded-lg shadow-md bom">
+                Go back to home
             </Link>
-            <span className='one'>4</span>
-            <span className='two'>0</span>
-            <span className='mid'>ops!</span>
-            <span className='three'>4</span>
         </div>
+
     );
 };
 

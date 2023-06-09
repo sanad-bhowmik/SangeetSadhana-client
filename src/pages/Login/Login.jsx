@@ -8,12 +8,13 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { toast, Toaster } from 'react-hot-toast';
 import app from '../../firebase/firebase.config';
 import Footer from '../../Shared/Footer/Footer';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
     const auth = getAuth(app)
     const { signIn } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
-
+    useTitle('Login')
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;

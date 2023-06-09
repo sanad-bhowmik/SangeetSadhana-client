@@ -6,13 +6,14 @@ import { toast, Toaster } from 'react-hot-toast';
 import Header from '../../Shared/Header/Header';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Footer from '../../Shared/Footer/Footer';
+import useTitle from '../../hooks/useTitle';
 
 const Registration = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserData } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+    useTitle('Registration')
     const onSubmit = data => {
         const { email, password, name, confirm, photo } = data;
 
