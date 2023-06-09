@@ -60,7 +60,7 @@ const Header = () => {
                   <div className="relative">
                     <div className="group relative flex justify-center">
                       <button tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <img className="w-10 rounded-full" src={user.photoURL} alt={user.displayName} />
+                        <img className="w-10 rounded-full" src={user.photoURL} alt={user.displayName} title={user.displayName} />
                       </button>
                       <span className="absolute top-10 scale-0 rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100">
                         {user.displayName}

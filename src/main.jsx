@@ -9,6 +9,9 @@ import Allclass from './pages/Allclass/Allclass';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import AuthProvider from './providers/AuthProvider';
+import DashBoard from './pages/DashBoard/DashBoard';
+import DashUsers from './pages/DashBoard/DashUsers/DashUsers';
+import DashClass from './pages/DashBoard/DashClass/DashClass';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,20 @@ const router = createBrowserRouter([
   {
     path: '/registration',
     element: <Registration />
+  },
+  {
+    path: '/dashboard',
+    element: <DashBoard />,
+    children: [
+      {
+        path: '/dashboard/users',
+        element: <DashUsers />
+      },
+      {
+        path: '/dashboard/class',
+        element: <DashClass />
+      }
+    ]
   },
   {
     path: '*',

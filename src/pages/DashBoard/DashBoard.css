@@ -1,0 +1,71 @@
+/* DashBoard.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+.navbar {
+  background: url('https://uploads-ssl.webflow.com/60a5528bc0b91d5c9fe69ca0/61fdc5db62044cc2b17606a5_webflow-tutorial-onectus.jpeg');
+  background-size: cover;
+  background-position: center;
+  animation: gradientAnimation 5s infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.navbar ul li {
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: fadeInAnimation 0.5s forwards;
+  font-size: xx-large;
+}
+
+@keyframes fadeInAnimation {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+li {
+  background-image: linear-gradient(
+    to right,
+    #e48c09,
+    #4b0dbd 50%,
+    #000 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+li:before{
+  content: '';
+  background: #000000;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+li:hover {
+ background-position: 0;
+}
+
+li:hover::before{
+  width: 100%;
+}
