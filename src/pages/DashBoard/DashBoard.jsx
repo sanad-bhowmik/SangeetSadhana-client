@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import './DashBoard.css'
 import logo from '../../assets/image/logo.png'
 import { Link, NavLink } from 'react-router-dom';
-import { FaHome,FaUserAstronaut,FaSchool } from "react-icons/fa";
+import { FaHome, FaUserAstronaut, FaSchool,FaMoneyCheckAlt,FaMarker } from "react-icons/fa";
 import DashUsers from './DashUsers/DashUsers';
 import DashClass from './DashClass/DashClass';
+import StudentClass from './StudentClass/StudentClass';
+import Payment from './Payment/Payment';
 
 const DashBoard = () => {
     const [activeNavItem, setActiveNavItem] = useState('Courses');
 
     const isAdmin = true;
+    const isStudent = true;
+    const isInstructor = true;
 
     const handleNavItemClick = (navItem) => {
         setActiveNavItem(navItem);
@@ -23,7 +27,7 @@ const DashBoard = () => {
                     <ul className="flex flex-col">
 
                         <li className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''}`}>
-                            <Link to='/'><FaHome className='ml-6'/>Home</Link>
+                            <Link to='/'><FaHome className='ml-6' />Home</Link>
                         </li>
                         {
                             isAdmin ? <>
@@ -32,45 +36,38 @@ const DashBoard = () => {
                                         }`}
                                     onClick={() => handleNavItemClick('Users')}
                                 >
-                                    <FaUserAstronaut className='ml-6'/><NavLink to='/dashboard/users' >Users</NavLink>
+                                    <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/users' >Users</NavLink>
                                 </li>
                                 <li
                                     className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                         }`}
                                     onClick={() => handleNavItemClick('Classes')}
                                 >
-                                    <FaSchool className='ml-6'/>Classes
+                                    <FaSchool className='ml-6' />Classes
                                 </li>
                             </> : <>
+                                <li className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''}`}>
+                                    <Link to='/'><FaHome className='ml-6' />Home</Link>
+                                </li>
+                            </>
+                        }
+                        {
+                            isStudent ? <>
                                 <li
                                     className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                         }`}
-                                    onClick={() => handleNavItemClick('Courses')}
+                                    onClick={() => handleNavItemClick('MyClass')}
                                 >
-                                    Courses
+                                    <FaMarker className='ml-6' /><NavLink to='/dashboard/users' >My Classes</NavLink>
                                 </li>
                                 <li
-                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Students' ? 'font-bold' : ''
+                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                         }`}
-                                    onClick={() => handleNavItemClick('Students')}
+                                    onClick={() => handleNavItemClick('Payment')}
                                 >
-                                    Students
+                                    <FaMoneyCheckAlt className='ml-6' />Payment
                                 </li>
-                                <li
-                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Assignments' ? 'font-bold' : ''
-                                        }`}
-                                    onClick={() => handleNavItemClick('Assignments')}
-                                >
-                                    Assignments
-                                </li>
-                                <li
-                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Grades' ? 'font-bold' : ''
-                                        }`}
-                                    onClick={() => handleNavItemClick('Grades')}
-                                >
-                                    Grades
-                                </li>
-                            </>
+                            </> : <></>
                         }
                     </ul>
                 </nav>
@@ -79,25 +76,25 @@ const DashBoard = () => {
                 {activeNavItem === 'Users' && (
                     <div>
                         <h2 className="text-2xl font-bold mb-4"></h2>
-                        <DashUsers/>
+                        <DashUsers />
                     </div>
                 )}
                 {activeNavItem === 'Classes' && (
                     <div>
                         <h2 className="text-2xl font-bold mb-4">Classes</h2>
-                        <DashClass/>
+                        <DashClass />
                     </div>
                 )}
-                {activeNavItem === 'Assignments' && (
+                {activeNavItem === 'MyClass' && (
                     <div>
                         <h2 className="text-2xl font-bold mb-4">Assignments</h2>
-                        {/* Assignment content goes here */}
+                        <StudentClass/>
                     </div>
                 )}
-                {activeNavItem === 'Grades' && (
+                {activeNavItem === 'Payment' && (
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">Grades</h2>
-                        {/* Grade content goes here */}
+                        <h2 className="text-2xl font-bold mb-4">Payment</h2>
+                        <Payment/>
                     </div>
                 )}
             </div>

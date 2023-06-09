@@ -111,7 +111,7 @@ li img {
 
 .slider-prev::before {
     content: '<';
-    margin-right: 15px;
+    margin-right: 144px;
 }
 
 .slider-next::before {

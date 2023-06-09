@@ -12,6 +12,8 @@ import AuthProvider from './providers/AuthProvider';
 import DashBoard from './pages/DashBoard/DashBoard';
 import DashUsers from './pages/DashBoard/DashUsers/DashUsers';
 import DashClass from './pages/DashBoard/DashClass/DashClass';
+import StudentClass from './pages/DashBoard/StudentClass/StudentClass';
+import Payment from './pages/DashBoard/Payment/Payment';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/class',
         element: <DashClass />
+      },
+      {
+        path: '/dashboard/myclass',
+        element: <StudentClass />
+      },
+      {
+        path: '/dashboard/payment',
+        element: <Payment />
       }
     ]
   },
