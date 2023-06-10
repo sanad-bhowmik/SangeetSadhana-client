@@ -4,16 +4,18 @@ import logo from '../../assets/image/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { FaHome, FaUserAstronaut, FaSchool, FaMoneyCheckAlt, FaMarker } from "react-icons/fa";
 import DashUsers from './DashUsers/DashUsers';
-import DashClass from './DashClass/DashClass';
 import StudentClass from './StudentClass/StudentClass';
 import Payment from './Payment/Payment';
 import useAdmin from '../../hooks/useAdmin';
 import useInstructor from '../../hooks/useInstructor';
 import Enroll from './Enroll/Enroll';
+import useTitle from '../../hooks/useTitle';
+import AddCls from './Instructor/AddCls/AddCls';
+import ClsInstructor from './Instructor/ClsInstructor/ClsInstructor';
 
 const DashBoard = () => {
     const [activeNavItem, setActiveNavItem] = useState('Courses');
-
+    useTitle('Dashboard')
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
 
@@ -44,29 +46,39 @@ const DashBoard = () => {
                                 >
                                     <FaSchool className='ml-6' />Classes
                                 </li>
-                            </> : <>
-                                <li
-                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
-                                        }`}
-                                    onClick={() => handleNavItemClick('MyClass')}
-                                >
-                                    <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/myclass' >My Class</NavLink>
-                                </li>
-                                <li
-                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
-                                        }`}
-                                    onClick={() => handleNavItemClick('Enroll')}
-                                >
-                                    <FaSchool className='ml-6' /><NavLink to='/dashboard/enroll' >Enroll</NavLink>
-                                </li>
-                                <li
-                                    className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
-                                        }`}
-                                    onClick={() => handleNavItemClick('Payment')}
-                                >
-                                    <FaSchool className='ml-6' /><NavLink to='/dashboard/payment' >Payment</NavLink>
-                                </li>
-                            </>
+                            </> : isInstructor ?
+                                <>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('Home')}
+                                    >
+                                        <FaUserAstronaut className='ml-6' /><NavLink to='/' >Home</NavLink>
+                                    </li>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('AddClass')}
+                                    >
+                                        <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/addcls' >Add Class</NavLink>
+                                    </li>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Mycls' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('Instructorcls')}
+                                    >
+                                        <FaSchool className='ml-6' /><NavLink to='/dashboard/instructorcls' >My Class</NavLink>
+                                    </li>
+                                </> :
+                                <>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('Home')}
+                                    >
+                                        <FaUserAstronaut className='ml-6' /><NavLink to='/' >Home</NavLink>
+                                    </li>
+                                </>
                         }
                     </ul>
                 </nav>
@@ -81,7 +93,7 @@ const DashBoard = () => {
                 {activeNavItem === 'Enroll' && (
                     <div>
                         <h2 className="text-2xl font-bold mb-4">Enroll</h2>
-                        <Enroll/>
+                        <Enroll />
                     </div>
                 )}
                 {activeNavItem === 'MyClass' && (
@@ -94,6 +106,18 @@ const DashBoard = () => {
                     <div>
                         <h2 className="text-2xl font-bold mb-4">Payment</h2>
                         <Payment />
+                    </div>
+                )}
+                {activeNavItem === 'AddClass' && (
+                    <div>
+                        <h2 className="text-2xl font-bold mb-4"></h2>
+                        <AddCls />
+                    </div>
+                )}
+                {activeNavItem === 'Instructorcls' && (
+                    <div>
+                        <h2 className="text-2xl font-bold mb-4"></h2>
+                        <ClsInstructor />
                     </div>
                 )}
             </div>

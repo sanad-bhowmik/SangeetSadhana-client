@@ -26,6 +26,7 @@ const Instructor = () => {
         fetchTeachers();
     }, []);
 
+    
     return (
         <div>
             <Header />
