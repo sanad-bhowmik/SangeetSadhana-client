@@ -78,6 +78,27 @@ const DashBoard = () => {
                                     >
                                         <FaUserAstronaut className='ml-6' /><NavLink to='/' >Home</NavLink>
                                     </li>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('MyClass')}
+                                    >
+                                        <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/myclass' >My Class</NavLink>
+                                    </li>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('Enroll')}
+                                    >
+                                        <FaSchool className='ml-6' /><NavLink to='/dashboard/enroll' >Enroll</NavLink>
+                                    </li>
+                                    <li
+                                        className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
+                                            }`}
+                                        onClick={() => handleNavItemClick('Payment')}
+                                    >
+                                        <FaSchool className='ml-6' /><NavLink to='/dashboard/payment' >Payment</NavLink>
+                                    </li>
                                 </>
                         }
                     </ul>

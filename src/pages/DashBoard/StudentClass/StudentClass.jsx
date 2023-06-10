@@ -4,6 +4,13 @@ import { toast, Toaster } from 'react-hot-toast';
 
 const StudentClass = () => {
   const [studentClasses, setStudentClasses] = useState([]);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [paymentInfo, setPaymentInfo] = useState({
+    name: '',
+    cardNumber: '',
+    expirationDate: '',
+  });
 
   useEffect(() => {
     fetchStudentClasses();
@@ -22,21 +29,40 @@ const StudentClass = () => {
     try {
       await axios.delete(`http://localhost:5000/mycls/${classId}`);
       toast.success('Class deleted successfully!');
-      fetchStudentClasses();
+      setStudentClasses(prevClasses => prevClasses.filter(classItem => classItem.classId !== classId));
     } catch (error) {
       console.log('Error deleting class:', error);
       toast.error('Failed to delete class. Please try again.');
     }
   };
 
-  const handlePayClass = async (classId) => {
-    try {
-      // Perform payment logic here
-      toast.success('Payment successful!');
-    } catch (error) {
-      console.log('Error processing payment:', error);
-      toast.error('Payment failed. Please try again.');
-    }
+  const handlePayClass = (classItem) => {
+    setSelectedClass(classItem);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedClass(null);
+    setShowModal(false);
+    setPaymentInfo({
+      name: '',
+      cardNumber: '',
+      expirationDate: '',
+    });
+  };
+
+  const handleConfirmPayment = () => {
+    // Perform payment logic here
+    toast.success('Payment successful!');
+    handleCloseModal();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPaymentInfo(prevPaymentInfo => ({
+      ...prevPaymentInfo,
+      [name]: value,
+    }));
   };
 
   return (
@@ -95,7 +121,7 @@ const StudentClass = () => {
                   <td className="py-4 px-6">
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
-                      onClick={() => handlePayClass(classItem.classId)}
+                      onClick={() => handlePayClass(classItem)}
                     >
                       Pay
                     </button>
@@ -110,6 +136,76 @@ const StudentClass = () => {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Payment Modal */}
+      {showModal && selectedClass && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="bg-white p-8 rounded">
+            <h2 className="text-2xl font-bold mb-4">Payment Information</h2>
+            <form>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+                  Name:
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={paymentInfo.name}
+                  onChange={handleChange}
+                  className="border border-gray-300 px-4 py-2 rounded-md w-full"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="cardNumber" className="block text-gray-700 font-bold mb-2">
+                  Card Number:
+                </label>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  value={paymentInfo.cardNumber}
+                  onChange={handleChange}
+                  className="border border-gray-300 px-4 py-2 rounded-md w-full"
+                  placeholder="Enter your card number"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="expirationDate" className="block text-gray-700 font-bold mb-2">
+                  Expiration Date:
+                </label>
+                <input
+                  type="text"
+                  id="expirationDate"
+                  name="expirationDate"
+                  value={paymentInfo.expirationDate}
+                  onChange={handleChange}
+                  className="border border-gray-300 px-4 py-2 rounded-md w-full"
+                  placeholder="Enter expiration date"
+                  required
+                />
+              </div>
+            </form>
+            <div className="flex justify-end mt-4">
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
+                onClick={handleConfirmPayment}
+              >
+                Confirm Payment
+              </button>
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                onClick={handleCloseModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

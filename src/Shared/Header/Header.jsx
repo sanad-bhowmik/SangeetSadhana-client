@@ -46,7 +46,7 @@ const Header = () => {
                     <Link to='/instructor'><h1>Instructors</h1></Link>
                 </div>
                 <div className="form-control">
-                    <Link to='/allclass'>
+                    <Link to='/eachcls'>
                         <h1>Classes</h1>
                     </Link>
                 </div>

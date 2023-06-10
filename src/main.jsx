@@ -21,6 +21,7 @@ import {
 import Enroll from './pages/DashBoard/Enroll/Enroll';
 import AddCls from './pages/DashBoard/Instructor/AddCls/AddCls';
 import ClsInstructor from './pages/DashBoard/Instructor/ClsInstructor/ClsInstructor';
+import EachClass from './components/EachClass/EachClass';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path:'/eachcls',
+    element: <EachClass/>
   },
   {
     path: '/registration',
