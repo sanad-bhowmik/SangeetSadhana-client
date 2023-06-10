@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import './DashBoard.css'
 import logo from '../../assets/image/logo.png'
+import home from '../../assets/Dashboard/home.gif'
+import classs from '../../assets/Dashboard/teacher.gif'
+import enroll from '../../assets/Dashboard/enroll.png'
+import payment from '../../assets/Dashboard/payment.gif'
+import mycls from '../../assets/Dashboard/mycls.gif'
+import addcls from '../../assets/Dashboard/addcls.gif'
+import user from '../../assets/Dashboard/user.gif'
 import { Link, NavLink } from 'react-router-dom';
 import { FaHome, FaUserAstronaut, FaSchool, FaMoneyCheckAlt, FaMarker } from "react-icons/fa";
 import DashUsers from './DashUsers/DashUsers';
@@ -27,7 +34,7 @@ const DashBoard = () => {
         <div className="flex h-screen">
             {/* Side Navbar */}
             <div className="navbar text-black w-1/3 p-4">
-                <div className="text-2xl font-bold mb-8"><img src={logo} className='h-24 mb-[190%]' alt="" /></div>
+                <div className="text-2xl font-bold mb-8"><img src={logo} className='h-24 mb-[210%]' alt="" /></div>
                 <nav>
                     <ul className="flex flex-col">
                         {
@@ -37,7 +44,7 @@ const DashBoard = () => {
                                         }`}
                                     onClick={() => handleNavItemClick('Users')}
                                 >
-                                    <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/users' >Users</NavLink>
+                                    <NavLink to='/dashboard/users' ><img src={user}  className='ml-4 h-20' alt="" />Users</NavLink>
                                 </li>
                                 <li
                                     className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
@@ -53,21 +60,22 @@ const DashBoard = () => {
                                             }`}
                                         onClick={() => handleNavItemClick('Home')}
                                     >
-                                        <FaUserAstronaut className='ml-6' /><NavLink to='/' >Home</NavLink>
+                                         <NavLink to='/' ><img src={home}  className='ml-4 h-20' alt="" />Home</NavLink>
                                     </li>
+                                    <div className="divider"></div> 
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('AddClass')}
                                     >
-                                        <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/addcls' >Add Class</NavLink>
+                                       <NavLink to='/dashboard/addcls'><img src={addcls}  className='ml-4 h-20' alt="" />Add Class</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Mycls' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('Instructorcls')}
                                     >
-                                        <FaSchool className='ml-6' /><NavLink to='/dashboard/instructorcls' >My Class</NavLink>
+                                        <NavLink to='/dashboard/instructorcls'><img src={mycls}  className='ml-4 h-20' alt="" />My Class</NavLink>
                                     </li>
                                 </> :
                                 <>
@@ -76,28 +84,28 @@ const DashBoard = () => {
                                             }`}
                                         onClick={() => handleNavItemClick('Home')}
                                     >
-                                        <FaUserAstronaut className='ml-6' /><NavLink to='/' >Home</NavLink>
+                                        <NavLink to='/' ><img src={home}  className='ml-4 h-20' alt="" />Home</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('MyClass')}
                                     >
-                                        <FaUserAstronaut className='ml-6' /><NavLink to='/dashboard/myclass' >My Class</NavLink>
+                                        <NavLink to='/dashboard/myclass'><img src={classs}  className='ml-4 h-20' alt="" />My Class</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('Enroll')}
                                     >
-                                        <FaSchool className='ml-6' /><NavLink to='/dashboard/enroll' >Enroll</NavLink>
+                                        <NavLink to='/dashboard/enroll' ><img src={enroll}  className='ml-4 h-20' alt="" />Enroll</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('Payment')}
                                     >
-                                        <FaSchool className='ml-6' /><NavLink to='/dashboard/payment' >Payment</NavLink>
+                                        <NavLink to='/dashboard/payment' ><img src={payment}  className='ml-4 h-20' alt="" />Payment</NavLink>
                                     </li>
                                 </>
                         }
