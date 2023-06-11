@@ -14,16 +14,16 @@ import DashUsers from './pages/DashBoard/DashUsers/DashUsers';
 import DashClass from './pages/DashBoard/DashClass/DashClass';
 import StudentClass from './pages/DashBoard/StudentClass/StudentClass';
 import Payment from './pages/DashBoard/Payment/Payment';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
 import Enroll from './pages/DashBoard/Enroll/Enroll';
 import AddCls from './pages/DashBoard/Instructor/AddCls/AddCls';
 import ClsInstructor from './pages/DashBoard/Instructor/ClsInstructor/ClsInstructor';
 import EachClass from './components/EachClass/EachClass';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
@@ -42,56 +42,56 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path:'/eachcls',
-    element: <EachClass/>
+    path: '/eachcls',
+    element: <EachClass />,
   },
   {
     path: '/registration',
-    element: <Registration />
+    element: <Registration />,
   },
   {
     path: '/dashboard',
     element: <DashBoard />,
     children: [
       {
-        path: '/dashboard/users',
-        element: <DashUsers />
+        path: 'users', // Remove the leading slash to make it a relative path
+        element: <DashUsers />,
       },
       {
-        path: '/dashboard/class',
-        element: <DashClass />
+        path: 'class', // Remove the leading slash to make it a relative path
+        element: <DashClass />,
       },
       {
-        path: '/dashboard/myclass',
-        element: <StudentClass />
+        path: 'myclass', // Remove the leading slash to make it a relative path
+        element: <StudentClass />,
       },
       {
-        path: '/dashboard/payment',
-        element: <Payment />
-      }
-      ,
+        path: 'payment/:classId',
+        element: <Payment />,
+      },
+      // {
+      //   path: 'payment',
+      //   element: <Payment/>
+      // },
       {
-        path: '/dashboard/enroll',
-        element: <Enroll/>
-      }
-      ,
+        path: 'enroll', // Remove the leading slash to make it a relative path
+        element: <Enroll />,
+      },
       {
-        path: '/dashboard/addcls',
-        element: <AddCls/>
-      }
-      ,
+        path: 'addcls', // Remove the leading slash to make it a relative path
+        element: <AddCls />,
+      },
       {
-        path: '/dashboard/instructorcls',
-        element: <ClsInstructor/>
-      }
-    ]
+        path: 'instructorcls', // Remove the leading slash to make it a relative path
+        element: <ClsInstructor />,
+      },
+    ],
   },
   {
     path: '*',
     element: <Error />,
   },
 ]);
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>

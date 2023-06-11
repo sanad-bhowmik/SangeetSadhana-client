@@ -44,7 +44,7 @@ const DashBoard = () => {
                                         }`}
                                     onClick={() => handleNavItemClick('Users')}
                                 >
-                                    <NavLink to='/dashboard/users' ><img src={user}  className='ml-4 h-20' alt="" />Users</NavLink>
+                                    <NavLink to='/dashboard/users' ><img src={user} className='ml-4 h-20' alt="" />Users</NavLink>
                                 </li>
                                 <li
                                     className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
@@ -60,22 +60,22 @@ const DashBoard = () => {
                                             }`}
                                         onClick={() => handleNavItemClick('Home')}
                                     >
-                                         <NavLink to='/' ><img src={home}  className='ml-4 h-20' alt="" />Home</NavLink>
+                                        <NavLink to='/' ><img src={home} className='ml-4 h-20' alt="" />Home</NavLink>
                                     </li>
-                                    <div className="divider"></div> 
+                                    <div className="divider"></div>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('AddClass')}
                                     >
-                                       <NavLink to='/dashboard/addcls'><img src={addcls}  className='ml-4 h-20' alt="" />Add Class</NavLink>
+                                        <NavLink to='/dashboard/addcls'><img src={addcls} className='ml-4 h-20' alt="" />Add Class</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Mycls' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('Instructorcls')}
                                     >
-                                        <NavLink to='/dashboard/instructorcls'><img src={mycls}  className='ml-4 h-20' alt="" />My Class</NavLink>
+                                        <NavLink to='/dashboard/instructorcls'><img src={mycls} className='ml-4 h-20' alt="" />My Class</NavLink>
                                     </li>
                                 </> :
                                 <>
@@ -84,28 +84,28 @@ const DashBoard = () => {
                                             }`}
                                         onClick={() => handleNavItemClick('Home')}
                                     >
-                                        <NavLink to='/' ><img src={home}  className='ml-4 h-20' alt="" />Home</NavLink>
+                                        <NavLink to='/' ><img src={home} className='ml-4 h-20' alt="" />Home</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('MyClass')}
                                     >
-                                        <NavLink to='/dashboard/myclass'><img src={classs}  className='ml-4 h-20' alt="" />My Class</NavLink>
+                                        <NavLink to='/dashboard/myclass'><img src={classs} className='ml-4 h-20' alt="" />My Class</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('Enroll')}
                                     >
-                                        <NavLink to='/dashboard/enroll' ><img src={enroll}  className='ml-4 h-20' alt="" />Enroll</NavLink>
+                                        <NavLink to='/dashboard/enroll' ><img src={enroll} className='ml-4 h-20' alt="" />Enroll</NavLink>
                                     </li>
                                     <li
                                         className={`cursor-pointer mb-4 ${activeNavItem === 'Courses' ? 'font-bold' : ''
                                             }`}
                                         onClick={() => handleNavItemClick('Payment')}
                                     >
-                                        <NavLink to='/dashboard/payment' ><img src={payment}  className='ml-4 h-20' alt="" />Payment</NavLink>
+                                        <NavLink to='payment/:classId' ><img src={payment} className='ml-4 h-20' alt="" />Payment</NavLink>
                                     </li>
                                 </>
                         }
