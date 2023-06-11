@@ -66,13 +66,10 @@ const router = createBrowserRouter([
         element: <StudentClass />,
       },
       {
-        path: 'payment/:classId',
+        path: 'payment',
         element: <Payment />,
       },
-      // {
-      //   path: 'payment',
-      //   element: <Payment/>
-      // },
+      
       {
         path: 'enroll', // Remove the leading slash to make it a relative path
         element: <Enroll />,
