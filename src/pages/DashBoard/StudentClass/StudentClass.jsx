@@ -5,6 +5,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../Payment/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 
+
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const StudentClass = () => {
   const [studentClasses, setStudentClasses] = useState([]);
@@ -57,7 +58,6 @@ const StudentClass = () => {
 
   const handleConfirmPayment = () => {
     // Perform payment logic here
-    toast.success('Payment successful!');
     handleCloseModal();
   };
 
@@ -147,7 +147,9 @@ const StudentClass = () => {
                 {selectedClass && <CheckoutForm
                   price={selectedClass.price}
                   classImg={selectedClass.classImg}
-                  instructorImg={selectedClass.instructorImg} />}
+                  instructorImg={selectedClass.instructorImg}
+                  className={selectedClass.className}
+                  />}
               </Elements>
             </div>
           </div>
