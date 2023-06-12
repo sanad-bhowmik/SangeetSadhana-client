@@ -16,7 +16,7 @@ const Instructor = () => {
     useEffect(() => {
         const fetchTeachers = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/teachers');
+                const response = await axios.get('https://sangeet-sadhana-server.vercel.app/teachers');
                 setTeachers(response.data);
             } catch (error) {
                 console.log('Error fetching teachers:', error);

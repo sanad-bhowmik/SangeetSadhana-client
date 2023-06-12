@@ -13,7 +13,8 @@ const Registration = () => {
     const { createUser, updateUserData } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    useTitle('Registration')
+    useTitle('Registration');
+
     const onSubmit = data => {
         const { email, password, name, confirm, photo } = data;
 
@@ -27,10 +28,10 @@ const Registration = () => {
                     const loggedUser = result.user;
                     console.log(loggedUser);
                     toast.success('Registration successful');
-                    updateUserData(data.name, data.photoURL)
+                    updateUserData(name, photo)
                         .then(() => {
-                            const saveUser = { name: data.name, email: email }
-                            fetch('http://localhost:5000/users', {
+                            const saveUser = { name: name, email: email };
+                            fetch('https://sangeet-sadhana-server.vercel.app/users', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json'
@@ -40,11 +41,11 @@ const Registration = () => {
                                 .then(res => res.json())
                                 .then(data => {
                                     if (data.insertedId) {
-                                        toast.success('user created successfully')
+                                        toast.success('User created successfully');
                                         reset();
                                     }
-                                })
-                        })
+                                });
+                        });
                 })
                 .catch(error => {
                     console.log(error);
@@ -64,7 +65,7 @@ const Registration = () => {
     return (
         <div>
             <Header />
-            <section className='bg-black'>
+            <section className="bg-black">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -182,27 +183,27 @@ const Registration = () => {
                         <h2>Registration</h2>
                         <form onSubmit={handleSubmit(onSubmit)} className="form">
                             <div className="inputbx">
-                                <input {...register("name", { required: true })} name='name' type="name" />
+                                <input {...register("name", { required: true })} name="name" type="name" />
                                 {errors.name && (
-                                    <p className='text-red-500'>This field is required</p>
+                                    <p className="text-red-500">This field is required</p>
                                 )}
                                 <i>Name</i>
                             </div>
                             <div className="inputbx">
-                                <input {...register("email", { required: true })} name='email' type="email" />
+                                <input {...register("email", { required: true })} name="email" type="email" />
                                 {errors.email && (
-                                    <p className='text-red-500'>This field is required</p>
+                                    <p className="text-red-500">This field is required</p>
                                 )}
                                 <i>Email</i>
                             </div>
                             <div className="inputbx">
                                 <input
                                     {...register("password", { required: true })}
-                                    name='password'
+                                    name="password"
                                     type={showPassword ? "text" : "password"}
                                 />
                                 {errors.password && (
-                                    <p className='text-red-500'>{errors.password.message}</p>
+                                    <p className="text-red-500">{errors.password.message}</p>
                                 )}
                                 <i>Password</i>
                                 <button
@@ -211,27 +212,27 @@ const Registration = () => {
                                     onClick={toggleShowPassword}
                                 >
                                     {showPassword ? (
-                                        <FaEye className='text-white' />
+                                        <FaEye className="text-white" />
                                     ) : (
-                                        <FaEyeSlash className='text-gray-500' />
+                                        <FaEyeSlash className="text-gray-500" />
                                     )}
                                 </button>
                             </div>
                             <div className="inputbx">
                                 <input
                                     {...register("confirm", { required: true })}
-                                    name='confirm'
+                                    name="confirm"
                                     type={showConfirmPassword ? "text" : "password"}
                                 />
                                 {errors.confirm && (
-                                    <p className='text-red-500'>This field is required</p>
+                                    <p className="text-red-500">This field is required</p>
                                 )}
                                 <i>Confirm Password</i>
                             </div>
                             <div className="inputbx">
-                                <input {...register("photo", { required: true })} name='photo' type="url" />
+                                <input {...register("photo", { required: true })} name="photo" type="url" />
                                 {errors.photo && (
-                                    <p className='text-red-500'>This field is required</p>
+                                    <p className="text-red-500">This field is required</p>
                                 )}
                                 <i>Photo</i>
                             </div>
@@ -252,3 +253,4 @@ const Registration = () => {
 };
 
 export default Registration;
+

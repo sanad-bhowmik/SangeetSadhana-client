@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Teachers.css'; // Import the CSS file for styling
+import { Link } from 'react-router-dom';
+
 
 const Teachers = () => {
     const [teachersData, setTeachersData] = useState([]);
@@ -8,7 +10,7 @@ const Teachers = () => {
     useEffect(() => {
         const fetchTeachersData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/teachers');
+                const response = await axios.get('https://sangeet-sadhana-server.vercel.app/teachers');
                 setTeachersData(response.data);
             } catch (error) {
                 console.error('Error fetching teachers data:', error);
@@ -34,7 +36,9 @@ const Teachers = () => {
                             <p>Email: {teacher.email}</p>
                             <p>Number of Classes: {teacher.numClasses}</p>
                             <button className="my-button mt-10 mb-6">
-                                <b>Classes</b>
+                                <Link to='/eachcls'>
+                                    <b>Classes</b>
+                                </Link>
                             </button>
                             {teacher.classes.map((classItem) => (
                                 <div key={classItem.id} className="class-item flex items-center justify-between bg-gray-100 px-6 py-4 rounded-lg">

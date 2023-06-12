@@ -22,6 +22,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import PrivateRoute from './Routes/PrivateRoute';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashBoard />,
+    element: <PrivateRoute><DashBoard /></PrivateRoute>,
     children: [
       {
         path: 'users', // Remove the leading slash to make it a relative path

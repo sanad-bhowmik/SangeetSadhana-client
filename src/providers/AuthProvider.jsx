@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const user = auth.currentUser;
-      await updateProfile(user, { displayName: displayName || null, photoURL });
+      await updateProfile(user, { displayName: displayName || null, photoURL: photoURL || null });
       setUser(user);
       setLoading(false);
     } catch (error) {
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
       throw new Error('Failed to update user data');
     }
   };
-
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
 
       // get and set token
       if (currentUser) {
-        axios.post('http://localhost:5000/jwt', { email: currentUser.email })
+        axios.post('https://sangeet-sadhana-server.vercel.app/jwt', { email: currentUser.email })
           .then(data => {
             console.log(data.data.token)
             localStorage.setItem('access-token', data.data.token)
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
     setUser,
     signIn,
     logOut,
-    updateUserData, // Include the updateUserData function in the authInfo
+    updateUserData,
   };
 
   return (

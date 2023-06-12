@@ -55,7 +55,7 @@ const AddCls = () => {
 
     try {
       // Post teacher data
-      const teacherResponse = await fetch('http://localhost:5000/teachers', {
+      const teacherResponse = await fetch('https://sangeet-sadhana-server.vercel.app/teachers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const AddCls = () => {
       });
 
       // Post addcls data
-      const addClsResponse = await fetch('http://localhost:5000/addcls', {
+      const addClsResponse = await fetch('https://sangeet-sadhana-server.vercel.app/addcls', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

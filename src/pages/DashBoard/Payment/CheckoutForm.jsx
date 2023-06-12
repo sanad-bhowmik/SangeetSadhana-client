@@ -80,7 +80,7 @@ const CheckoutForm = ({ price, classImg, instructorImg, className }) => {
 
             // Make the POST request to the API endpoint
             axios
-                .post("http://localhost:5000/payments", transactionData)
+                .post("https://sangeet-sadhana-server.vercel.app/payments", transactionData)
                 .then((response) => {
                     console.log("Data posted successfully:", response.data);
                     toast.success('Payment Success')
@@ -122,7 +122,7 @@ const CheckoutForm = ({ price, classImg, instructorImg, className }) => {
                 </button>
             </form>
             {cardError && <toast>{cardError}</toast>}
-            {transactionId && <div className="badge badge-accent">{transactionId}</div>}
+           {transactionId && <div className="badge badge-accent font-3xl"> <h1>Transition ID:</h1> {transactionId}</div>}
         </>
     );
 };

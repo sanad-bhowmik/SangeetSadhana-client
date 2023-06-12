@@ -10,7 +10,7 @@ const Enroll = () => {
 
     const fetchPayments = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/payments');
+            const response = await axios.get('https://sangeet-sadhana-server.vercel.app/payments');
             setPayments(response.data);
         } catch (error) {
             console.log('Error fetching payments:', error);

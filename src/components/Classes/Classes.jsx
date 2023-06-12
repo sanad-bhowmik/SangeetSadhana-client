@@ -10,7 +10,7 @@ const Classes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/classes');
+        const response = await axios.get('https://sangeet-sadhana-server.vercel.app/classes');
         const sortedData = response.data.sort((a, b) => b.enrolled_students - a.enrolled_students);
         setClassesData(sortedData);
       } catch (error) {

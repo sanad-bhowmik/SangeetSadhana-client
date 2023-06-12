@@ -9,7 +9,7 @@ const EachClass = () => {
   useEffect(() => {
     const fetchClassData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/classes');
+        const response = await axios.get('https://sangeet-sadhana-server.vercel.app/classes');
         setClassData(response.data);
       } catch (error) {
         console.error('Error fetching class data:', error);

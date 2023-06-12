@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './ClassManage.css';
 
 const ClassManage = () => {
   const [classes, setClasses] = useState([]);
@@ -6,7 +7,7 @@ const ClassManage = () => {
 
   useEffect(() => {
     const fetchClasses = () => {
-      fetch('http://localhost:5000/addcls')
+      fetch('https://sangeet-sadhana-server.vercel.app/addcls')
         .then((response) => response.json())
         .then((data) => setClasses(data))
         .catch((error) => console.error('Error:', error));
@@ -22,7 +23,7 @@ const ClassManage = () => {
 
   const handleStatusChange = (classId, newStatus) => {
     // Make a PATCH request to update the status of the class
-    fetch(`http://localhost:5000/addcls/${classId}`, {
+    fetch(`https://sangeet-sadhana-server.vercel.app/addcls/${classId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -58,8 +59,10 @@ const ClassManage = () => {
   };
 
   const isButtonDisabled = (status, buttonStatus) => {
-    return (status === 'approve' && buttonStatus === 'deny') ||
-      (status === 'deny' && buttonStatus === 'approve');
+    return (
+      (status === 'approve' && buttonStatus === 'deny') ||
+      (status === 'deny' && buttonStatus === 'approve')
+    );
   };
 
   return (
@@ -77,25 +80,32 @@ const ClassManage = () => {
             <h2 className="card-title text-xl font-bold">{cls.name}</h2>
             <p className="text-gray-600">{cls.email}</p>
             <p className="text-gray-600">Number of Classes: {cls.numClasses}</p>
-            {/* <h3 className="mt-4 mb-2 font-semibold">Classes:</h3> */}
             {cls.classes.map((classItem) => (
               <div key={classItem.id} className="mb-4">
                 <h4 className="text-lg font-semibold">{classItem.name}</h4>
-                <p className="text-gray-600">Available Seats: {classItem.availableSeats}</p>
+                <p className="text-gray-600">
+                  Available Seats: {classItem.availableSeats}
+                </p>
                 <p className="text-gray-600">Price: ${classItem.price}</p>
               </div>
             ))}
             <div className="flex justify-between">
               <div className="dropdown inline-block relative">
                 <button
-                  className={`btn btn-info dropdown-toggle ${getStatusButtonColor(cls.status)}`}
+                  className={`btn btn-info dropdown-toggle ${getStatusButtonColor(
+                    cls.status
+                  )}`}
                 >
                   Status: {cls.status}
                 </button>
                 <ul className="dropdown-menu">
                   <li>
                     <button
-                      className={`btn btn-link ${isButtonDisabled(cls.status, 'approve') ? 'pointer-events-none' : ''}`}
+                      className={`btn btn-link ${
+                        isButtonDisabled(cls.status, 'approve')
+                          ? 'pointer-events-none'
+                          : ''
+                      }`}
                       onClick={() => handleStatusChange(cls._id, 'approve')}
                       disabled={isButtonDisabled(cls.status, 'approve')}
                     >
@@ -104,7 +114,11 @@ const ClassManage = () => {
                   </li>
                   <li>
                     <button
-                      className={`btn btn-link ${isButtonDisabled(cls.status, 'deny') ? 'pointer-events-none' : ''}`}
+                      className={`btn btn-link ${
+                        isButtonDisabled(cls.status, 'deny')
+                          ? 'pointer-events-none'
+                          : ''
+                      }`}
                       onClick={() => handleStatusChange(cls._id, 'deny')}
                       disabled={isButtonDisabled(cls.status, 'deny')}
                     >
@@ -113,23 +127,35 @@ const ClassManage = () => {
                   </li>
                 </ul>
               </div>
-              <button className="btn btn-primary" onClick={openModal}>
+              <button
+                className="btn btn-primary"
+                onClick={() => openModal()} // Modify the click event handler here
+              >
                 Send Feedback
               </button>
+              
             </div>
           </div>
         </div>
       ))}
       {showModal && (
-        <div className="modal flex items-center justify-center z-50">
-          <div className="modal-box">
-            <h2 className="modal-title">Send Feedback</h2>
-            <textarea className="modal-textarea" placeholder="Enter your feedback..." />
-            <div className="modal-action">
-              <button className="btn" onClick={closeModal}>
+        <div className="modal fixed inset-0 flex items-center justify-center z-50">
+          <div className="modal-box bg-white rounded-xl p-6">
+            <h2 className="modal-title text-2xl font-bold mb-4">
+              Send Feedback
+            </h2>
+            <textarea
+              className="modal-textarea p-4 border rounded-lg resize-none w-full mb-4"
+              placeholder="Enter your feedback..."
+            />
+            <div className="modal-action flex justify-end">
+              <button
+                className="btn btn-outline btn-square mr-2"
+                onClick={closeModal}
+              >
                 Cancel
               </button>
-              <button className="btn btn-primary">Submit</button>
+              <button className="btn btn-primary btn-square">Submit</button>
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ const ClsInstructor = () => {
   }, []);
 
   const fetchClasses = () => {
-    fetch('http://localhost:5000/addcls')
+    fetch('https://sangeet-sadhana-server.vercel.app/addcls')
       .then((response) => response.json())
       .then((data) => setClasses(data))
       .catch((error) => console.error('Error:', error));
@@ -54,7 +54,7 @@ const ClsInstructor = () => {
       ...updateFields,
     };
 
-    fetch(`http://localhost:5000/addcls/${selectedClass._id}`, {
+    fetch(`https://sangeet-sadhana-server.vercel.app/addcls/${selectedClass._id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

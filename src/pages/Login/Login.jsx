@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Login.css'
 import Header from '../../Shared/Header/Header';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import google from '../../assets/image/google.png'
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
@@ -14,6 +14,11 @@ const Login = () => {
     const auth = getAuth(app)
     const { signIn } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.form?.pathname || "/";
+
     useTitle('Login')
     const handleLogin = event => {
         event.preventDefault();
@@ -27,10 +32,11 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 toast.success('Login successful! Welcome Back');
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 toast.error('Invalid email or password');
-              });
+            });
     }
     const handleGoogleSignIn = (event) => {
         event.preventDefault();
@@ -39,10 +45,10 @@ const Login = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
-                fetch('http://localhost:5000/users',{
+                fetch('https://sangeet-sadhana-server.vercel.app/users', {
                     method: 'POST',
-                    headers:{
-                        'content-type':'application/json'
+                    headers: {
+                        'content-type': 'application/json'
                     },
                     body: JSON.stringify(saveUser)
                 })

@@ -24,7 +24,7 @@ const StudentClass = () => {
 
   const fetchStudentClasses = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/mycls');
+      const response = await axios.get('https://sangeet-sadhana-server.vercel.app/mycls');
       setStudentClasses(response.data);
     } catch (error) {
       console.log('Error fetching student classes:', error);
@@ -33,7 +33,7 @@ const StudentClass = () => {
 
   const handleDeleteClass = async (classId) => {
     try {
-      await axios.delete(`http://localhost:5000/mycls/${classId}`);
+      await axios.delete(`https://sangeet-sadhana-server.vercel.app/mycls/${classId}`);
       toast.success('Class deleted successfully!');
       setStudentClasses(prevClasses => prevClasses.filter(classItem => classItem.classId !== classId));
     } catch (error) {

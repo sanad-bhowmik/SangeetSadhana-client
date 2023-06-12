@@ -5,9 +5,17 @@ const Payment = () => {
 
   useEffect(() => {
     // Fetch payment data from the API endpoint
-    fetch('http://localhost:5000/payments')
+    fetch('https://sangeet-sadhana-server.vercel.app/payments')
       .then((response) => response.json())
-      .then((data) => setPaymentData(data))
+      .then((data) => {
+        // Sort the payment data in descending order based on _id
+        data.sort((a, b) => {
+          if (a._id > b._id) return -1;
+          if (a._id < b._id) return 1;
+          return 0;
+        });
+        setPaymentData(data);
+      })
       .catch((error) => console.log(error));
   }, []);
 
