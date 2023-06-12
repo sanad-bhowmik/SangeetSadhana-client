@@ -67,9 +67,9 @@ const Main = () => {
                 <>
                     <div className="theme-toggle" onClick={handleThemeToggle}>
                         {isDarkMode ? (
-                            <FaRegMoon className="theme-icon dark" />
+                            <div><FaRegMoon className="theme-icon dark" /><p>Dark</p></div>
                         ) : (
-                            <FaRegSun className="theme-icon light" />
+                            <div><FaRegSun className="theme-icon light" /><p>Light</p></div>
                         )}
                     </div>
 

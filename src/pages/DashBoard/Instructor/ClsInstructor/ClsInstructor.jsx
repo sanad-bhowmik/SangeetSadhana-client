@@ -3,14 +3,26 @@ import React, { useEffect, useState } from 'react';
 const ClsInstructor = () => {
   const [classes, setClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState(null);
-  const [updateFields, setUpdateFields] = useState({});
+  const [updateFields, setUpdateFields] = useState({ classes: [] });
 
   useEffect(() => {
+    fetchClasses();
+
+    // Poll for updates every 5 seconds
+    const interval = setInterval(fetchClasses, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const fetchClasses = () => {
     fetch('http://localhost:5000/addcls')
       .then((response) => response.json())
       .then((data) => setClasses(data))
       .catch((error) => console.error('Error:', error));
-  }, []);
+  };
+
 
   const handleUpdateClick = (cls) => {
     setSelectedClass(cls);
@@ -37,13 +49,13 @@ const ClsInstructor = () => {
     if (!selectedClass || !selectedClass._id) {
       return;
     }
-  
+
     const updatedClass = {
       ...selectedClass,
       ...updateFields,
     };
-  
-    fetch(`http://localhost:5000/addcls/${String(selectedClass._id)}`, {
+
+    fetch(`http://localhost:5000/addcls/${selectedClass._id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -52,12 +64,8 @@ const ClsInstructor = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Update the classes state with the updated class
-        const updatedClasses = classes.map((cls) =>
-          cls._id === data._id ? data : cls
-        );
+        const updatedClasses = classes.map((cls) => (cls._id === data._id ? data : cls));
         setClasses(updatedClasses);
-        // Reset the form inputs
         setSelectedClass(null);
         setUpdateFields({});
       })
@@ -81,13 +89,15 @@ const ClsInstructor = () => {
               </div>
             ))}
             <span
-              className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
-                cls.status === 'pending' ? 'bg-yellow-500' : 'bg-green-500'
-              } text-white`}
+              className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${cls.status === 'pending' ? 'bg-yellow-500' : 'bg-green-500'
+                } text-white`}
             >
               {cls.status.toUpperCase()}
             </span>
-            <button className="mt-4 bg-blue-500 text-white font-semibold py-2 px-4 rounded" onClick={() => handleUpdateClick(cls)}>
+            <button
+              className="mt-4 bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+              onClick={() => handleUpdateClick(cls)}
+            >
               Update
             </button>
           </div>
@@ -122,9 +132,14 @@ const ClsInstructor = () => {
                       type="text"
                       id={`updateClassName${classItem.id}`}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                      value={classItem.name}
+                      value={classItem.name || ''}
                       onChange={(e) =>
-                        handleFieldChange('classes', updateFields.classes.map((c) => (c.id === classItem.id ? { ...c, name: e.target.value } : c)))
+                        handleFieldChange(
+                          'classes',
+                          updateFields.classes.map((c) =>
+                            c.id === classItem.id ? { ...c, name: e.target.value } : c
+                          )
+                        )
                       }
                     />
                     <label htmlFor={`updateClassSeats${classItem.id}`} className="block text-gray-700 font-semibold mb-2 mt-2">
@@ -134,11 +149,13 @@ const ClsInstructor = () => {
                       type="number"
                       id={`updateClassSeats${classItem.id}`}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                      value={classItem.availableSeats}
+                      value={classItem.availableSeats || ''}
                       onChange={(e) =>
                         handleFieldChange(
                           'classes',
-                          updateFields.classes.map((c) => (c.id === classItem.id ? { ...c, availableSeats: parseInt(e.target.value) } : c))
+                          updateFields.classes.map((c) =>
+                            c.id === classItem.id ? { ...c, availableSeats: parseInt(e.target.value) } : c
+                          )
                         )
                       }
                     />
@@ -149,11 +166,13 @@ const ClsInstructor = () => {
                       type="number"
                       id={`updateClassPrice${classItem.id}`}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                      value={classItem.price}
+                      value={classItem.price || ''}
                       onChange={(e) =>
                         handleFieldChange(
                           'classes',
-                          updateFields.classes.map((c) => (c.id === classItem.id ? { ...c, price: parseFloat(e.target.value) } : c))
+                          updateFields.classes.map((c) =>
+                            c.id === classItem.id ? { ...c, price: parseFloat(e.target.value) } : c
+                          )
                         )
                       }
                     />
