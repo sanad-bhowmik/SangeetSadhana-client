@@ -105,7 +105,7 @@ const DashBoard = () => {
                                             }`}
                                         onClick={() => handleNavItemClick('Payment')}
                                     >
-                                        <NavLink to='/dashboard/payment' ><img src={payment}  className='ml-4 h-20' alt="" />Payment</NavLink>
+                                        <NavLink to='/dashboard/payment' ><img src={payment}  className='ml-4 h-20' alt="" />My Payment</NavLink>
                                     </li>
                                 </>
                         }
@@ -121,7 +121,7 @@ const DashBoard = () => {
                 )}
                 {activeNavItem === 'Enroll' && (
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">Enroll</h2>
+                        <h2 className="text-5xl text-center mb-10 underline">Enroll <span className='text-teal-500'>class</span></h2>
                         <Enroll />
                     </div>
                 )}

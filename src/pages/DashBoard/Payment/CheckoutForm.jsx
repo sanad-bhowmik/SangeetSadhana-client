@@ -122,7 +122,7 @@ const CheckoutForm = ({ price, classImg, instructorImg, className }) => {
                 </button>
             </form>
             {cardError && <toast>{cardError}</toast>}
-            {transactionId && <p>{transactionId}</p>}
+            {transactionId && <div className="badge badge-accent">{transactionId}</div>}
         </>
     );
 };

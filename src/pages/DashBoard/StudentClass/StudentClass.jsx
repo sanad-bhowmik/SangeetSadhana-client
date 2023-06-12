@@ -4,6 +4,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../Payment/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
+import './StudentClass.css'
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
@@ -141,16 +142,20 @@ const StudentClass = () => {
                 ))}
               </tbody>
             </table>
-            <div className="mt-10 bg-gradient-to-r from-purple-400 via-blue-400 to-teal-500 py-8 px-4 rounded-lg">
+            <div className="mt-10 bg-gradient-to-r from-purple-400 via-blue-400 to-teal-500 py-8 px-4 rounded-lg neon-light">
               <h2 className="text-2xl font-bold text-white text-center mb-4">Payment</h2>
-              <Elements stripe={stripePromise}>
-                {selectedClass && <CheckoutForm
-                  price={selectedClass.price}
-                  classImg={selectedClass.classImg}
-                  instructorImg={selectedClass.instructorImg}
-                  className={selectedClass.className}
-                  />}
-              </Elements>
+              <div className="credit-card-content">
+                <Elements stripe={stripePromise}>
+                  {selectedClass && (
+                    <CheckoutForm
+                      price={selectedClass.price}
+                      classImg={selectedClass.classImg}
+                      instructorImg={selectedClass.instructorImg}
+                      className={selectedClass.className}
+                    />
+                  )}
+                </Elements>
+              </div>
             </div>
           </div>
         )}
