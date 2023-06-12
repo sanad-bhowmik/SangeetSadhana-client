@@ -53,6 +53,7 @@ const Login = () => {
                     body: JSON.stringify(saveUser)
                 })
                 toast.success('Login successful! Welcome');
+                navigate(from, { replace: true });
                 setUser(loggedUser);
             })
             .catch((error) => {

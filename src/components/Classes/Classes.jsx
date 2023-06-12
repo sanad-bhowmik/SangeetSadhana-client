@@ -23,10 +23,12 @@ const Classes = () => {
 
   return (
     <div className="mt-14">
-      <h1 className="text-5xl text-center mb-10 font-semibold underline">Popular <span className='text-purple-400'>Classes</span></h1>
-      <div className="grid grid-cols-3 gap-4 ml-36">
+      <h1 className="text-5xl text-center mb-10 font-semibold underline">
+        Popular <span className="text-purple-400">Classes</span>
+      </h1>
+      <div className="grid md:grid-cols-3 gap-4 mx-4 md:mx-0">
         {classesData.map((classItem) => (
-          <div className="card w-96 bg-base-100 shadow-xl" key={classItem._id}>
+          <div className="card bg-base-100 shadow-xl" key={classItem._id}>
             <figure>
               <img src={classItem.img} alt={classItem.title} />
             </figure>
