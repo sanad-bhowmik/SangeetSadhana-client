@@ -28,6 +28,9 @@ const Login = () => {
                 form.reset();
                 toast.success('Login successful! Welcome Back');
             })
+            .catch((error) => {
+                toast.error('Invalid email or password');
+              });
     }
     const handleGoogleSignIn = (event) => {
         event.preventDefault();

@@ -49,18 +49,18 @@ const ClsInstructor = () => {
     if (!selectedClass || !selectedClass._id) {
       return;
     }
-
+  
     const updatedClass = {
       ...selectedClass,
       ...updateFields,
     };
-
+  
     fetch(`http://localhost:5000/addcls/${selectedClass._id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedClass),
+      body: JSON.stringify(updateFields), // Send updateFields instead of updatedClass
     })
       .then((response) => response.json())
       .then((data) => {
@@ -71,10 +71,10 @@ const ClsInstructor = () => {
       })
       .catch((error) => console.error('Error:', error));
   };
+  
 
   return (
     <div>
-      <h1>ClsInstructor</h1>
       <div className="grid grid-cols-3 gap-4">
         {classes.map((cls) => (
           <div key={cls._id} className="bg-white rounded-lg shadow-lg p-4">

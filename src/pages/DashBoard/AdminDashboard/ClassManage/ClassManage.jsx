@@ -5,10 +5,19 @@ const ClassManage = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/addcls')
-      .then((response) => response.json())
-      .then((data) => setClasses(data))
-      .catch((error) => console.error('Error:', error));
+    const fetchClasses = () => {
+      fetch('http://localhost:5000/addcls')
+        .then((response) => response.json())
+        .then((data) => setClasses(data))
+        .catch((error) => console.error('Error:', error));
+    };
+
+    const interval = setInterval(fetchClasses, 5000);
+    fetchClasses();
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const handleStatusChange = (classId, newStatus) => {
