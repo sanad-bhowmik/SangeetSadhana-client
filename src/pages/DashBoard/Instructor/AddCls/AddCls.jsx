@@ -3,62 +3,88 @@ import { AuthContext } from '../../../../providers/AuthProvider';
 import { toast, Toaster } from 'react-hot-toast';
 
 const AddCls = () => {
-    const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
-    // Retrieve user data from the authentication context
-    const user = authContext.user;
+  // Retrieve user data from the authentication context
+  const user = authContext.user;
 
-    // State for form fields
-    const [className, setClassName] = useState('');
-    const [classImage, setClassImage] = useState('');
-    const [availableSeats, setAvailableSeats] = useState('');
-    const [price, setPrice] = useState('');
-    const [status, setStatus] = useState('pending');
+  // State for form fields
+  const [className, setClassName] = useState('');
+  const [classImage, setClassImage] = useState('');
+  const [availableSeats, setAvailableSeats] = useState('');
+  const [price, setPrice] = useState('');
+  const [status, setStatus] = useState('pending');
 
-    // Handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        // Prepare the class data object
-        const classData = {
-            className,
-            classImage,
-            instructorName: user.displayName,
-            instructorEmail: user.email,
-            availableSeats: parseInt(availableSeats),
-            price: parseFloat(price),
-            status: 'pending', // Set the default status to 'pending'
-        };
-
-        try {
-            // Make a POST request to the backend API to add the class
-            const response = await fetch('http://localhost:5000/teachers', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(classData),
-            });
-
-            if (response.ok) {
-                // Update the status after successful submission
-                setStatus('approved'); // Change the status to 'approved'
-
-                // Show a success message or perform any other action
-                toast.success('Class added successfully!');
-                // Reset the form fields
-                setClassName('');
-                setClassImage('');
-                setAvailableSeats('');
-                setPrice('');
-            } else {
-                // Show an error message or perform any other action
-                console.error('Error adding class.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+    const teacherData = {
+      img: classImage,
+      name: user.displayName,
+      email: user.email,
+      numClasses: 1,
+      classes: [
+        {
+          id: 1,
+          name: className,
+          img: classImage,
+          availableSeats: parseInt(availableSeats),
+          price: parseFloat(price),
+        },
+      ],
+      status: status, // Set the current status value
     };
+
+    const addClsData = {
+      _id: Math.random().toString(36).substring(7),
+      img: classImage,
+      name: user.displayName,
+      email: user.email,
+      numClasses: 1,
+      classes: [
+        {
+          id: 1,
+          name: className,
+          img: classImage,
+          availableSeats: parseInt(availableSeats),
+          price: parseFloat(price),
+        },
+      ],
+      status: status, // Set the current status value
+    };
+
+    try {
+      // Post teacher data
+      const teacherResponse = await fetch('http://localhost:5000/teachers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(teacherData),
+      });
+
+      // Post addcls data
+      const addClsResponse = await fetch('http://localhost:5000/addcls', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(addClsData),
+      });
+
+      if (teacherResponse.ok && addClsResponse.ok) {
+        toast.success('Class added successfully!');
+        setClassName('');
+        setClassImage('');
+        setAvailableSeats('');
+        setPrice('');
+      } else {
+        console.error('Error adding class.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
     return (
         <div className="flex flex-col items-center">
@@ -126,19 +152,24 @@ const AddCls = () => {
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="text-sm font-semibold text-gray-800"></label>
-                    <span className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${status === 'pending' ? 'bg-yellow-500' : 'bg-green-500'} text-white`}>
-                        {status.toUpperCase()}
-                    </span>
-                </div>
-                <button
-                    type="submit"
-                    className="bg-purple-700 text-white px-6 py-3 rounded-lg hover:bg-purple-800 transition-colors duration-300"
-                >
-                    Add
-                </button>
-            </form>
+          <label className="text-sm font-semibold text-gray-800"></label>
+          <span
+            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
+              status === 'pending' ? 'bg-yellow-500' : 'bg-green-500'
+            } text-white`}
+          >
+            {status.toUpperCase()}
+          </span>
         </div>
+
+        <button
+          type="submit"
+          className="bg-purple-700 text-white px-6 py-3 rounded-lg hover:bg-purple-800 transition-colors duration-300"
+        >
+          Add
+        </button>
+      </form>
+    </div>
     );
 };
 

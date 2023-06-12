@@ -7,7 +7,6 @@ import Classes from '../components/Classes/Classes';
 import Teachers from '../components/Teachers/Teachers';
 import Banner from '../components/Banner/Banner';
 import Quote from '../components/Quote/Quote';
-import Review from '../Review/Review';
 import { FaRegSun, FaRegMoon } from 'react-icons/fa';
 import useTitle from '../hooks/useTitle';
 
@@ -81,7 +80,6 @@ const Main = () => {
                         <Classes />
                         <Banner />
                         <Teachers />
-                        <Review />
                         <Footer />
                     </div>
                 </>

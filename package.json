@@ -14,6 +14,7 @@
     "@stripe/react-stripe-js": "^2.1.0",
     "@stripe/stripe-js": "^1.54.0",
     "@tanstack/react-query": "^4.29.12",
+    "@uiw/react-heat-map": "^2.0.5",
     "animejs": "^3.2.1",
     "axios": "^1.4.0",
     "firebase": "^9.22.1",
