@@ -23,7 +23,6 @@ const ClsInstructor = () => {
       .catch((error) => console.error('Error:', error));
   };
 
-
   const handleUpdateClick = (cls) => {
     setSelectedClass(cls);
     setUpdateFields({
@@ -49,12 +48,12 @@ const ClsInstructor = () => {
     if (!selectedClass || !selectedClass._id) {
       return;
     }
-  
+
     const updatedClass = {
       ...selectedClass,
       ...updateFields,
     };
-  
+
     fetch(`http://localhost:5000/addcls/${selectedClass._id}`, {
       method: 'PATCH',
       headers: {
@@ -71,14 +70,28 @@ const ClsInstructor = () => {
       })
       .catch((error) => console.error('Error:', error));
   };
-  
+
+  const getStatusButtonColor = (status) => {
+    if (status === 'pending') {
+      return 'btn-info';
+    } else if (status === 'deny') {
+      return 'btn-error';
+    } else if (status === 'approve') {
+      return 'btn-success';
+    }
+    return '';
+  };
 
   return (
     <div>
       <div className="grid grid-cols-3 gap-4">
         {classes.map((cls) => (
           <div key={cls._id} className="bg-white rounded-lg shadow-lg p-4">
-            <img src={cls.img} alt={cls.name} className="w-full h-40 object-cover mb-4 rounded-lg" />
+            <img
+              src={cls.img}
+              alt={cls.name}
+              className="w-full h-40 object-cover mb-4 rounded-lg"
+            />
             <h2 className="text-xl font-bold mb-2">{cls.name}</h2>
             <p className="text-gray-600 mb-4">{cls.email}</p>
             {cls.classes.map((classItem) => (
@@ -89,8 +102,9 @@ const ClsInstructor = () => {
               </div>
             ))}
             <span
-              className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${cls.status === 'pending' ? 'bg-yellow-500' : 'bg-green-500'
-                } text-white`}
+              className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
+                getStatusButtonColor(cls.status)
+              } text-white`}
             >
               {cls.status.toUpperCase()}
             </span>
@@ -125,7 +139,10 @@ const ClsInstructor = () => {
               {updateFields.classes &&
                 updateFields.classes.map((classItem) => (
                   <div key={classItem.id} className="mb-4">
-                    <label htmlFor={`updateClassName${classItem.id}`} className="block text-gray-700 font-semibold mb-2">
+                    <label
+                      htmlFor={`updateClassName${classItem.id}`}
+                      className="block text-gray-700 font-semibold mb-2"
+                    >
                       Class Name
                     </label>
                     <input
@@ -142,7 +159,10 @@ const ClsInstructor = () => {
                         )
                       }
                     />
-                    <label htmlFor={`updateClassSeats${classItem.id}`} className="block text-gray-700 font-semibold mb-2 mt-2">
+                    <label
+                      htmlFor={`updateClassSeats${classItem.id}`}
+                      className="block text-gray-700 font-semibold mb-2 mt-2"
+                    >
                       Available Seats
                     </label>
                     <input
@@ -159,7 +179,10 @@ const ClsInstructor = () => {
                         )
                       }
                     />
-                    <label htmlFor={`updateClassPrice${classItem.id}`} className="block text-gray-700 font-semibold mb-2 mt-2">
+                    <label
+                      htmlFor={`updateClassPrice${classItem.id}`}
+                      className="block text-gray-700 font-semibold mb-2 mt-2"
+                    >
                       Price
                     </label>
                     <input

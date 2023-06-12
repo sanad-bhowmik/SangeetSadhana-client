@@ -48,6 +48,20 @@ const ClassManage = () => {
     setShowModal(false);
   };
 
+  const getStatusButtonColor = (status) => {
+    if (status === 'approve') {
+      return 'btn-success';
+    } else if (status === 'deny') {
+      return 'btn-error';
+    }
+    return '';
+  };
+
+  const isButtonDisabled = (status, buttonStatus) => {
+    return (status === 'approve' && buttonStatus === 'deny') ||
+      (status === 'deny' && buttonStatus === 'approve');
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {classes.map((cls) => (
@@ -73,22 +87,26 @@ const ClassManage = () => {
             ))}
             <div className="flex justify-between">
               <div className="dropdown inline-block relative">
-                <button className="btn btn-primary dropdown-toggle">
+                <button
+                  className={`btn btn-info dropdown-toggle ${getStatusButtonColor(cls.status)}`}
+                >
                   Status: {cls.status}
                 </button>
                 <ul className="dropdown-menu">
                   <li>
                     <button
-                      className="btn btn-link"
+                      className={`btn btn-link ${isButtonDisabled(cls.status, 'approve') ? 'pointer-events-none' : ''}`}
                       onClick={() => handleStatusChange(cls._id, 'approve')}
+                      disabled={isButtonDisabled(cls.status, 'approve')}
                     >
                       Approve
                     </button>
                   </li>
                   <li>
                     <button
-                      className="btn btn-link"
+                      className={`btn btn-link ${isButtonDisabled(cls.status, 'deny') ? 'pointer-events-none' : ''}`}
                       onClick={() => handleStatusChange(cls._id, 'deny')}
+                      disabled={isButtonDisabled(cls.status, 'deny')}
                     >
                       Deny
                     </button>
@@ -108,7 +126,9 @@ const ClassManage = () => {
             <h2 className="modal-title">Send Feedback</h2>
             <textarea className="modal-textarea" placeholder="Enter your feedback..." />
             <div className="modal-action">
-              <button className="btn" onClick={closeModal}>Cancel</button>
+              <button className="btn" onClick={closeModal}>
+                Cancel
+              </button>
               <button className="btn btn-primary">Submit</button>
             </div>
           </div>
